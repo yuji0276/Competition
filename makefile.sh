@@ -6,7 +6,7 @@ competition_number=$1
 if [ -z "${competition_number}"]; then
   echo 'arguement is not ecnough'
   echo 'USAGE: ./makfile.sh [competition_number]'
-  exit 0
+  return
 fi
 
 
