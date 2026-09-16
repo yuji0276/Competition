@@ -3,7 +3,7 @@
 cd atcoder/ABC
 competition_number=$1
 
-if [ -z "${competition_number}"]; then
+if [ -z "${competition_number}" ]; then
   echo 'arguement is not ecnough'
   echo 'USAGE: ./makfile.sh [competition_number]'
   return
