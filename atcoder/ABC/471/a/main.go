@@ -1,25 +1,25 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-)
+import "fmt"
 
 func main() {
-	r := bufio.NewReader(os.Stdin)
-
 	var a, b int
+	fmt.Scan(&a, &b)
 
-	fmt.Fscan(r, &a, &b)
+	sum := a + b
+	diff := a - b
+	pro := a * b
 
-	if a+b == 9 {
-		fmt.Println("Nine")
-	} else if a-b == 9 {
-		fmt.Println("Nine")
-	} else if a*b == 9 {
-		fmt.Println("Nine")
-	} else if a == 9*b {
+	flag := false
+	if (sum == 9) || (diff == 9) || (pro == 9) {
+		flag = true
+	}
+	if b != 0 {
+		if a%b == 0 && a/b == 9 {
+			flag = true
+		}
+	}
+	if flag {
 		fmt.Println("Nine")
 	} else {
 		fmt.Println("Nein")
