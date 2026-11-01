@@ -10,7 +10,7 @@ if [ -z "${competition_number}" ]; then
 fi
 
 
-difficulties=("a" "b" "c")
+difficulties=("a" "b" )
 
 for difficulty in ${difficulties[@]}
 do
