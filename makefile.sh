@@ -1,21 +1,31 @@
 #!/bin/bash
+set -euo pipefail
 
-cd atcoder/ABC
-competition_number=$1
+BASE_DIR="./atcoder/ABC"
+competition_number="${1:-}"
 
-if [ -z "${competition_number}" ]; then
-  echo 'arguement is not ecnough'
-  echo 'USAGE: ./makfile.sh [competition_number]'
-  return
+if [ -z "$competition_number" ]; then
+  echo 'argument is not enough' >&2
+  echo "USAGE: $0 [competition_number]" >&2
+  exit 1
 fi
 
+difficulties=(a b)
 
-difficulties=("a" "b" )
+for difficulty in "${difficulties[@]}"; do
+  dir="$BASE_DIR/$competition_number/$difficulty"
+  mkdir -p "$dir"
+  if [ -e "$dir/main.go" ]; then
+    echo "skip: $dir/main.go already exists" >&2
+    continue
+  fi
+  cat << 'EOF' > "$dir/main.go"
+package main
 
-for difficulty in ${difficulties[@]}
-do
-  mkdir -p ${competition_number}/${difficulty}
-  touch ${competition_number}/${difficulty}/main.go
+func main() {
+
+}
+EOF
 done
 
-cd ${competition_number}
+echo "$BASE_DIR/$competition_number"
