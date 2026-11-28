@@ -1,44 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var n, m int
 	fmt.Scan(&n, &m)
-
-	drains := make([]string, n)
+	slice := make([]string, n)
 	for i := range n {
-		var drain string
-		fmt.Scan(&drain)
-		drains[i] = drain
+		var s string
+		fmt.Scan(&s)
+		slice[i] = s
 	}
-
-	var faucetStatus bool
-	var faucetIdx int
-	for i := range n {
-		for j := range m {
-			if drains[i][j] != 'o' {
-				continue
-			}
-			faucetIdx = i + 1
-			faucetStatus = true
+	target := strings.Repeat("x", m)
+	for idx, value := range slice {
+		if value == target {
+			fmt.Printf("Faucet %v", idx+1)
+			return
 		}
 	}
-	if faucetStatus {
-		fmt.Printf("Faucet %d", faucetIdx)
-	}
-	var drainStatus bool
-	var drainIdx int
-	for i := range m {
-		for j := range n {
-			if drains[j][i] == 'o' {
-				continue
-			}
-			drainIdx = i + 1
-			drainStatus = true
+	for idx := range m {
+		if slice[0][idx] == 'x' {
+			fmt.Printf("Drain %v", idx+1)
+			return
 		}
-	}
-	if drainStatus {
-		fmt.Printf("Drain %d", drainIdx)
 	}
 }
